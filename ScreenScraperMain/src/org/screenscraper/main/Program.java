@@ -1,6 +1,6 @@
 package org.screenscraper.main;
 
-import java.io.IOException;
+import org.screenscraper.excel.ReadWriteExcelFile;
 
 public class Program {
 
@@ -8,12 +8,16 @@ public class Program {
 
 		 
 
-		System.out.println("cevaaaaaaaa");
+		//System.out.println("cevaaaaaaaa");
 		/*try {
 			System.in.read();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		
+		ReadWriteExcelFile rw = new ReadWriteExcelFile();
+		rw.readXLSFile();
+		rw.writeXLSFile();
 	}
 }
