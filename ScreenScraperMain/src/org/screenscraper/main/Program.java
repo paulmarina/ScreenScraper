@@ -18,6 +18,6 @@ public class Program {
 		
 		ReadWriteExcelFile rw = new ReadWriteExcelFile();
 		rw.readXLSFile();
-		rw.writeXLSFile();
+		//rw.writeXLSFile();
 	}
 }

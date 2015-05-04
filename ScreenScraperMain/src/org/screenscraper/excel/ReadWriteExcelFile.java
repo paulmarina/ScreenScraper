@@ -22,7 +22,7 @@ public class ReadWriteExcelFile {
 
 		try {
 			FileInputStream file = new FileInputStream(new File(
-					"C:\\test1.xlsx"));
+					"C:\\Screen scraper data.xlsx"));
 
 			// Create Workbook instance holding reference to excel file
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -34,36 +34,48 @@ public class ReadWriteExcelFile {
 			Iterator<Row> rowIterator = sheet.iterator();
 			while (rowIterator.hasNext()) {
 				Row row = rowIterator.next();
+				if(row.getRowNum()==0){
+					continue;
+				}
+				
 
 				// For each row, iterate through each columns
-				/*
-				 * Iterator<Cell> cellIterator = row.cellIterator(); while
-				 * (cellIterator.hasNext()) {
-				 * 
-				 * Cell cell = cellIterator.next();
-				 * 
-				 * switch (cell.getCellType()) {
-				 * 
-				 * 
-				 * case Cell.CELL_TYPE_NUMERIC: System.out.print((int)
-				 * (cell.getNumericCellValue()) + "\t\t"); break; case
-				 * Cell.CELL_TYPE_STRING:
-				 * System.out.print(cell.getStringCellValue() + "\t\t"); break;
-				 * }
-				 * 
-				 * 
-				 * 
-				 * }
-				 */
+				
+				  /*Iterator<Cell> cellIterator = row.cellIterator(); while
+				  (cellIterator.hasNext()) {
+				  
+				  Cell cell = cellIterator.next();
+				  
+				  switch (cell.getCellType()) {
+				  
+				  
+				  case Cell.CELL_TYPE_NUMERIC: System.out.print((int)
+				  (cell.getNumericCellValue()) + "\t\t"); break; case
+				  Cell.CELL_TYPE_STRING:
+				  System.out.print(cell.getStringCellValue() + "\t\t"); break;
+				  }
+				  		  
+				  
+				  }*/
+				 
 
-				for (int i = 0; i < 14; i++) {
-					
-					Cell cell = row.getCell(i);
-					
+				Company company = new Company();
+				company.setCompany(row.getCell(0).getStringCellValue());
+				company.setWebsite(row.getCell(1).getStringCellValue());
+				company.setAreasOfApplication(row.getCell(2).getStringCellValue());
+				company.setCountry(row.getCell(3).getStringCellValue());
+				company.setCity(row.getCell(4).getStringCellValue());
+				company.setYearOfEstablishment((int)row.getCell(5).getNumericCellValue());
+				company.setNumberOfEmployees((int)row.getCell(6).getNumericCellValue());
+				company.setName1(row.getCell(7).getStringCellValue());
+				company.setJobTitle1(row.getCell(8).getStringCellValue());
+				company.setName2(row.getCell(9).getStringCellValue());
+				company.setJobTitle2(row.getCell(10).getStringCellValue());
+				company.setEmail(row.getCell(11).getStringCellValue());
+				company.setPhone((long)row.getCell(12).getNumericCellValue());
+				company.setMailingAddress(row.getCell(13).getStringCellValue());
+				
 
-				}
-
-				System.out.println("");
 			}
 			file.close();
 
