@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.screenscraper.parsers.*;
 import org.screenscraper.objects.*;
+import org.screenscraper.excel.ReadWriteExcelFile;
+
 
 public class Program {
 
@@ -32,5 +34,18 @@ public class Program {
 		for (CompanyUrl companyUrl : companyUrls) {
 			System.out.println(companyUrl.getUrl());
 		}
+		 
+
+		//System.out.println("cevaaaaaaaa");
+		/*try {
+			System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		ReadWriteExcelFile rw = new ReadWriteExcelFile();
+		rw.readXLSFile();
+		rw.writeXLSFile();
 	}
 }
