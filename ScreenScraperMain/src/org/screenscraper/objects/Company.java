@@ -14,7 +14,7 @@ public class Company {
 	private String name2;
 	private String jobTitle2;
 	private String email;
-	private long phone;
+	private String phone;
 	private String mailingAddress;
 
 	public String getCompany() {
@@ -113,11 +113,11 @@ public class Company {
 		this.email = email;
 	}
 
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

@@ -3,6 +3,7 @@ package org.screenscraper.main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.screenscraper.parsers.*;
@@ -45,7 +46,13 @@ public class Program {
 		}*/
 		
 		ReadWriteExcelFile rw = new ReadWriteExcelFile();
-		rw.readXLSFile();
+		ArrayList<Company> listCompany = new ArrayList<Company>();
+		listCompany = rw.readXLSFile();
+		for (Company company : listCompany) {
+			
+			System.out.println(company.getCompany());
+			
+		}
 		//rw.writeXLSFile();
 	}
 }
