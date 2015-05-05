@@ -15,7 +15,7 @@ public class Program {
 
 	public static void main(String args[]) {
 
-		System.out.println("cevaaaaaaaa");
+		/*System.out.println("cevaaaaaaaa");
 		
 		StringBuilder contentBuilder = new StringBuilder();
 		try {
@@ -34,7 +34,7 @@ public class Program {
 		
 		for (CompanyUrl companyUrl : companyUrls) {
 			System.out.println(companyUrl.getUrl());
-		}
+		}*/
 		 
 
 		//System.out.println("cevaaaaaaaa");
@@ -53,6 +53,6 @@ public class Program {
 			System.out.println(company.getCompany());
 			
 		}
-		//rw.writeXLSFile();
+		rw.writeXLSFile(listCompany);
 	}
 }
