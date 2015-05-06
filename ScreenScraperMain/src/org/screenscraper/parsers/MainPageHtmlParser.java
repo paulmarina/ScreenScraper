@@ -5,10 +5,18 @@ import java.util.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
 import org.screenscraper.objects.*;
 
 public class MainPageHtmlParser {
+
+	Map<String, String> germanCharacters = new HashMap<String, String>() {
+		{
+			put("Ã¼", "ü");
+			put("Ã¤", "ä");
+			put("ÃŸ", "ß");
+			put("Ã¶", "ö");
+		}
+	};
 
 	public List<CompanyUrl> parse(String html) {
 		List<CompanyUrl> urls = new ArrayList<CompanyUrl>();
@@ -22,6 +30,11 @@ public class MainPageHtmlParser {
 			Element aChild = element.child(0).child(0);
 			String url = "https://www.wlw.de/" + aChild.attr("href");
 			String name = aChild.text();
+			
+			// replace special characters with german characters
+/*			for (String character : germanCharacters) {
+				
+			}*/
 
 			CompanyUrl companyUrl = new CompanyUrl();
 			companyUrl.setUrl(url);
