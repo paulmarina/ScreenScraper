@@ -5,7 +5,7 @@ import java.util.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Node;
 import org.screenscraper.objects.*;
 
 public class MainPageHtmlParser {
@@ -16,18 +16,15 @@ public class MainPageHtmlParser {
 		// get xml representation of html
 		Document doc = Jsoup.parse(html);
 		
-		Elements nodeList = doc.getAllElements();
-		
 		List<Element> elements = doc.getElementsByClass("company-name");
 		for (Element element : elements) {
-			String str = element.baseUri();
-			String s = str;
+			CompanyUrl companyUrl = new CompanyUrl();
+			Node aChild = element.childNode(0).childNode(0);
+			String url = "https://www.wlw.de/" + aChild.attr("href");
+			companyUrl.setUrl(url);
+			String name = aChild.toString();
+			companyUrl.setName(name);
 		}
-		
-		for (int i = 0; i < nodeList.size(); i++) {
-			Element el = nodeList.get(i);
-			String s = el.baseUri();
-			String str = "da" + s;
 
 
 			/*// tags were found
@@ -38,7 +35,6 @@ public class MainPageHtmlParser {
 			} else if (el.nodeName().equals("metaname=\"keywords\"")) {
 				keywordsStatus = Constants.OkStatusString;
 			}*/
-		}
 		
 		return urls;
 	}
