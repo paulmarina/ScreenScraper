@@ -13,8 +13,6 @@ import org.screenscraper.excel.ReadWriteExcelFile;
 public class Program {
 
 	public static void main(String args[]) {
-
-		System.out.println("cevaaaaaaaa");
 		
 		StringBuilder contentBuilder = new StringBuilder();
 		try {
@@ -32,17 +30,8 @@ public class Program {
 		List<CompanyUrl> companyUrls = mphp.parse(content);
 		
 		for (CompanyUrl companyUrl : companyUrls) {
-			System.out.println(companyUrl.getUrl());
+			System.out.println(companyUrl.getName() + ": " + companyUrl.getUrl());
 		}
-		 
-
-		//System.out.println("cevaaaaaaaa");
-		/*try {
-			System.in.read();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		
 		ReadWriteExcelFile rw = new ReadWriteExcelFile();
 		rw.readXLSFile();

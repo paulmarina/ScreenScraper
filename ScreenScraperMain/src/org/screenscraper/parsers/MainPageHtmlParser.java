@@ -5,7 +5,6 @@ import java.util.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.screenscraper.objects.*;
 
 public class MainPageHtmlParser {
@@ -18,23 +17,16 @@ public class MainPageHtmlParser {
 		
 		List<Element> elements = doc.getElementsByClass("company-name");
 		for (Element element : elements) {
-			CompanyUrl companyUrl = new CompanyUrl();
-			Node aChild = element.childNode(0).childNode(0);
+			// get the <a href=""> element with company name
+			Element aChild = element.child(0).child(0);
 			String url = "https://www.wlw.de/" + aChild.attr("href");
+			String name = aChild.text();
+			
+			CompanyUrl companyUrl = new CompanyUrl();
 			companyUrl.setUrl(url);
-			String name = aChild.toString();
 			companyUrl.setName(name);
+			urls.add(companyUrl);
 		}
-
-
-			/*// tags were found
-			if (el.nodeName().equals("title")) {
-				titleStatus = Constants.OkStatusString;
-			} else if (el.nodeName().equals("metaname=\"description\"")) {
-				descriptionStatus = Constants.OkStatusString;
-			} else if (el.nodeName().equals("metaname=\"keywords\"")) {
-				keywordsStatus = Constants.OkStatusString;
-			}*/
 		
 		return urls;
 	}
