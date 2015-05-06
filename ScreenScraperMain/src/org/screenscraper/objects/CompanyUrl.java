@@ -1,10 +1,10 @@
 package org.screenscraper.objects;
 
 public class CompanyUrl {
-	
+
 	private String url;
 	private String name;
-	
+
 	public String getUrl() {
 		return url;
 	}
@@ -12,7 +12,7 @@ public class CompanyUrl {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
