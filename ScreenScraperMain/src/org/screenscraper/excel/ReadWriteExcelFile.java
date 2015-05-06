@@ -7,9 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -24,6 +21,7 @@ public class ReadWriteExcelFile {
 		ArrayList<Company> companyList = new ArrayList<Company>();
 
 		try {
+
 			FileInputStream file = new FileInputStream(new File(
 					"C:\\Screen scraper data.xlsx"));
 
@@ -78,76 +76,92 @@ public class ReadWriteExcelFile {
 
 	public void writeXLSFile(ArrayList<Company> companyList) {
 
+		// createNewFile() method creates a new, empty file if and only if a
+		// file with this name does not yet exist
+
 		// Blank workbook
 		XSSFWorkbook workbook = new XSSFWorkbook();
 
 		// Create a blank sheet
 		XSSFSheet sheet = workbook.createSheet("Wlw");
 
-		// This data needs to be written (Object[])
-		/*Map<String, Object[]> data = new TreeMap<String, Object[]>();
-		//data.put("1", new Object[] { "ID", "NAME", "LASTNAME" });
-		data.put("2", new Object[] { 1, "Amit", "Shukla" });
-		data.put("3", new Object[] { 2, "Lokesh", "Gupta" });
-		data.put("4", new Object[] { 3, "John", "Adwards" });
-		data.put("5", new Object[] { 4, "Brian", "Schultz" });*/
-
-		// Iterate over data and write to sheet
-		/*Set<String> keyset = data.keySet();
-		int rownum = 1;
-		for (String key : keyset) {
-			Row row = sheet.createRow(rownum++);
-			Object[] objArr = data.get(key);
-			int cellnum = 0;
-			for (Object obj : objArr) {
-				Cell cell = row.createCell(cellnum++);
-				if (obj instanceof String)
-					cell.setCellValue((String) obj);
-				else if (obj instanceof Integer)
-					cell.setCellValue((Integer) obj);
-			}
-		}*/
-		
 		int rownum = 1;
 		for (Company company : companyList) {
 			Row row = sheet.createRow(rownum++);
-			 Cell cell0 = row.createCell(0);
-			 cell0.setCellValue(company.getCompany());
-			 Cell cell1 = row.createCell(1);
-			 cell1.setCellValue(company.getWebsite());
-			 Cell cell2 = row.createCell(2);
-			 cell2.setCellValue(company.getAreasOfApplication());
-			 Cell cell3 = row.createCell(3);
-			 cell3.setCellValue(company.getCountry());
-			 Cell cell4 = row.createCell(4);
-			 cell4.setCellValue(company.getCity());
-			 Cell cell5 = row.createCell(5);
-			 cell5.setCellValue(company.getYearOfEstablishment());
-			 Cell cell6 = row.createCell(6);
-			 cell6.setCellValue(company.getNumberOfEmployees());
-			 Cell cell7 = row.createCell(7);
-			 cell7.setCellValue(company.getName1());
-			 Cell cell8 = row.createCell(8);
-			 cell8.setCellValue(company.getJobTitle1());
-			 Cell cell9 = row.createCell(9);
-			 cell9.setCellValue(company.getName2());
-			 Cell cell10 = row.createCell(10);
-			 cell10.setCellValue(company.getJobTitle2());
-			 Cell cell11 = row.createCell(11);
-			 cell11.setCellValue(company.getEmail());
-			 Cell cell12 = row.createCell(12);
-			 cell12.setCellValue(company.getPhone());
-			 Cell cell13 = row.createCell(13);
-			 cell13.setCellValue(company.getMailingAddress());
-		
+			Cell cell0 = row.createCell(0);
+			cell0.setCellValue(company.getCompany());
+			Cell cell1 = row.createCell(1);
+			cell1.setCellValue(company.getWebsite());
+			Cell cell2 = row.createCell(2);
+			cell2.setCellValue(company.getAreasOfApplication());
+			Cell cell3 = row.createCell(3);
+			cell3.setCellValue(company.getCountry());
+			Cell cell4 = row.createCell(4);
+			cell4.setCellValue(company.getCity());
+			Cell cell5 = row.createCell(5);
+			cell5.setCellValue(company.getYearOfEstablishment());
+			Cell cell6 = row.createCell(6);
+			cell6.setCellValue(company.getNumberOfEmployees());
+			Cell cell7 = row.createCell(7);
+			cell7.setCellValue(company.getName1());
+			Cell cell8 = row.createCell(8);
+			cell8.setCellValue(company.getJobTitle1());
+			Cell cell9 = row.createCell(9);
+			cell9.setCellValue(company.getName2());
+			Cell cell10 = row.createCell(10);
+			cell10.setCellValue(company.getJobTitle2());
+			Cell cell11 = row.createCell(11);
+			cell11.setCellValue(company.getEmail());
+			Cell cell12 = row.createCell(12);
+			cell12.setCellValue(company.getPhone());
+			Cell cell13 = row.createCell(13);
+			cell13.setCellValue(company.getMailingAddress());
+
 		}
-		
+
 		try {
-			FileOutputStream out = new FileOutputStream(new File(
-					"C:\\testWrite.xlsx"));
-			workbook.write(out);
-			out.close();
-			System.out.println("data written successfully on disk.");
+
+			File excelFile = new File("C:\\Screen scraper myData2.xls");
+			if (!excelFile.exists()) {
+				excelFile.createNewFile();
+				Row firstRow = sheet.createRow(0);
+				Cell cell0 = firstRow.createCell(0);
+				cell0.setCellValue("Company");
+				Cell cell1 = firstRow.createCell(1);
+				cell1.setCellValue("Website");
+				Cell cell2 = firstRow.createCell(2);
+				cell2.setCellValue("Areas of Application");
+				Cell cell3 = firstRow.createCell(3);
+				cell3.setCellValue("Country");
+				Cell cell4 = firstRow.createCell(4);
+				cell4.setCellValue("City");
+				Cell cell5 = firstRow.createCell(5);
+				cell5.setCellValue("Year of Establishment");
+				Cell cell6 = firstRow.createCell(6);
+				cell6.setCellValue("NumberOfEmployees");
+				Cell cell7 = firstRow.createCell(7);
+				cell7.setCellValue("Name1");
+				Cell cell8 = firstRow.createCell(8);
+				cell8.setCellValue("JobTitle1");
+				Cell cell9 = firstRow.createCell(9);
+				cell9.setCellValue("Name2");
+				Cell cell10 = firstRow.createCell(10);
+				cell10.setCellValue("JobTitle2");
+				Cell cell11 = firstRow.createCell(11);
+				cell11.setCellValue("Email");
+				Cell cell12 = firstRow.createCell(12);
+				cell12.setCellValue("Phone");
+				Cell cell13 = firstRow.createCell(13);
+				cell13.setCellValue("MailingAddress");
+				
+				
+
+			} 				
+				FileOutputStream out = new FileOutputStream(excelFile);				
+				workbook.write(out);
+				out.close();
+				System.out.println("data written successfully on disk.");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
